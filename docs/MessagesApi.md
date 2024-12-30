@@ -2,70 +2,161 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**sent_message_post**](MessagesApi.md#sent_message_post) | **POST** /sentMessage | New message sent |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_messages**](MessagesApi.md#create_messages) | **POST** /rentals/{rental_id}/messages.json | Create Message associated to a rental
+[**get_message_by_id**](MessagesApi.md#get_message_by_id) | **GET** /rentals/{rental_id}/messages/{id}.json | Find a message by ID associated to a rental
+[**get_messages_for_rental**](MessagesApi.md#get_messages_for_rental) | **GET** /rentals/{rental_id}/messages.json | Find messages associated to a rental
 
+# **create_messages**
+> Message create_messages(rental_id, opts)
 
-## sent_message_post
+Create Message associated to a rental
 
-> sent_message_post(opts)
+Create Message associated to a rental
 
-New message sent
-
-### Examples
-
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
 
 api_instance = GetAroundOwner::MessagesApi.new
-opts = {
-  getaround_messages_sent:  # GetaroundMessagesSent | This event is triggered when a new message has been sent for one of your rentals
+rental_id = GetAroundOwner::null.new #  | ID of rental
+opts = { 
+  body: GetAroundOwner::RentalIdMessagesJsonBody.new # RentalIdMessagesJsonBody | Message to create
 }
 
 begin
-  # New message sent
-  api_instance.sent_message_post(opts)
+  #Create Message associated to a rental
+  result = api_instance.create_messages(rental_id, opts)
+  p result
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling MessagesApi->sent_message_post: #{e}"
-end
-```
-
-#### Using the sent_message_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> sent_message_post_with_http_info(opts)
-
-```ruby
-begin
-  # New message sent
-  data, status_code, headers = api_instance.sent_message_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling MessagesApi->sent_message_post_with_http_info: #{e}"
+  puts "Exception when calling MessagesApi->create_messages: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_messages_sent** | [**GetaroundMessagesSent**](GetaroundMessagesSent.md) | This event is triggered when a new message has been sent for one of your rentals | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rental_id** | [****](.md)| ID of rental | 
+ **body** | [**RentalIdMessagesJsonBody**](RentalIdMessagesJsonBody.md)| Message to create | [optional] 
 
 ### Return type
 
-nil (empty response body)
+[**Message**](Message.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **get_message_by_id**
+> Message get_message_by_id(rental_id, id)
+
+Find a message by ID associated to a rental
+
+Find a message by ID associated to a rental
+
+### Example
+```ruby
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
+
+api_instance = GetAroundOwner::MessagesApi.new
+rental_id = GetAroundOwner::null.new #  | ID of rental
+id = GetAroundOwner::null.new #  | ID of message to return
+
+
+begin
+  #Find a message by ID associated to a rental
+  result = api_instance.get_message_by_id(rental_id, id)
+  p result
+rescue GetAroundOwner::ApiError => e
+  puts "Exception when calling MessagesApi->get_message_by_id: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rental_id** | [****](.md)| ID of rental | 
+ **id** | [****](.md)| ID of message to return | 
+
+### Return type
+
+[**Message**](Message.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **get_messages_for_rental**
+> RentalMessagesIndex get_messages_for_rental(rental_id)
+
+Find messages associated to a rental
+
+Find messages associated to a rental
+
+### Example
+```ruby
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
+
+api_instance = GetAroundOwner::MessagesApi.new
+rental_id = GetAroundOwner::null.new #  | ID of rental
+
+
+begin
+  #Find messages associated to a rental
+  result = api_instance.get_messages_for_rental(rental_id)
+  p result
+rescue GetAroundOwner::ApiError => e
+  puts "Exception when calling MessagesApi->get_messages_for_rental: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rental_id** | [****](.md)| ID of rental | 
+
+### Return type
+
+[**RentalMessagesIndex**](RentalMessagesIndex.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 

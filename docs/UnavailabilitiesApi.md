@@ -2,60 +2,47 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**created_unavailability_post**](UnavailabilitiesApi.md#created_unavailability_post) | **POST** /createdUnavailability | Unavailability created on one of your cars |
-| [**deleted_unavailability_post**](UnavailabilitiesApi.md#deleted_unavailability_post) | **POST** /deletedUnavailability | Unavailabilities deleted on one of your cars |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_unavailabilities**](UnavailabilitiesApi.md#create_unavailabilities) | **POST** /cars/{car_id}/unavailabilities.json | Create Unavailability related to a car between dates
+[**destroy_unavailability**](UnavailabilitiesApi.md#destroy_unavailability) | **DELETE** /cars/{car_id}/unavailabilities.json | Destroy Unavailability related to a car between dates
+[**get_unavailabilities_for_car**](UnavailabilitiesApi.md#get_unavailabilities_for_car) | **GET** /cars/{car_id}/unavailabilities.json | Find Unavailabilities related to a car between dates
 
+# **create_unavailabilities**
+> create_unavailabilities(car_id, opts)
 
-## created_unavailability_post
+Create Unavailability related to a car between dates
 
-> created_unavailability_post(opts)
+Set a car as unavailable between 2 dates
 
-Unavailability created on one of your cars
-
-### Examples
-
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
 
 api_instance = GetAroundOwner::UnavailabilitiesApi.new
-opts = {
-  getaround_unavailabilities_created:  # GetaroundUnavailabilitiesCreated | This event is triggered whenever an unavailability is created (through the API or directly in the app/website). It shows the unavailability that has just been created, with the same timestamps as those entered by the user. It does not show the changes of other potential overlapping unavailabilities. For example: if an unavailability was already set between June 10 and June 20, and if the user creates a new one between June 18 and June 22, this webhook will only send information about the newly created June 18 - June 22 unavailability. It will not show that, under the hood, the unavailability from June 10 to June 20 has be deleted, and that a new unavailability from June 10 to June 22 has been created.
+car_id = GetAroundOwner::null.new #  | ID of car
+opts = { 
+  body: GetAroundOwner::CarIdUnavailabilitiesJsonBody.new # CarIdUnavailabilitiesJsonBody | Unavailability to create
 }
 
 begin
-  # Unavailability created on one of your cars
-  api_instance.created_unavailability_post(opts)
+  #Create Unavailability related to a car between dates
+  api_instance.create_unavailabilities(car_id, opts)
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling UnavailabilitiesApi->created_unavailability_post: #{e}"
-end
-```
-
-#### Using the created_unavailability_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> created_unavailability_post_with_http_info(opts)
-
-```ruby
-begin
-  # Unavailability created on one of your cars
-  data, status_code, headers = api_instance.created_unavailability_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling UnavailabilitiesApi->created_unavailability_post_with_http_info: #{e}"
+  puts "Exception when calling UnavailabilitiesApi->create_unavailabilities: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_unavailabilities_created** | [**GetaroundUnavailabilitiesCreated**](GetaroundUnavailabilitiesCreated.md) | This event is triggered whenever an unavailability is created (through the API or directly in the app/website). It shows the unavailability that has just been created, with the same timestamps as those entered by the user. It does not show the changes of other potential overlapping unavailabilities. For example: if an unavailability was already set between June 10 and June 20, and if the user creates a new one between June 18 and June 22, this webhook will only send information about the newly created June 18 - June 22 unavailability. It will not show that, under the hood, the unavailability from June 10 to June 20 has be deleted, and that a new unavailability from June 10 to June 22 has been created. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **car_id** | [****](.md)| ID of car | 
+ **body** | [**CarIdUnavailabilitiesJsonBody**](CarIdUnavailabilitiesJsonBody.md)| Unavailability to create | [optional] 
 
 ### Return type
 
@@ -63,62 +50,47 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 
-## deleted_unavailability_post
 
-> deleted_unavailability_post(opts)
+# **destroy_unavailability**
+> destroy_unavailability(car_id)
 
-Unavailabilities deleted on one of your cars
+Destroy Unavailability related to a car between dates
 
-### Examples
+Set a car as available between 2 dates
 
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
 
 api_instance = GetAroundOwner::UnavailabilitiesApi.new
-opts = {
-  getaround_unavailabilities_deleted:  # GetaroundUnavailabilitiesDeleted | This event is triggered whenever an unavailability is deleted (through the API or directly in the app/website). It shows the unavailability that has just been deleted, with the same timestamps as those entered by the user. It does not show the changes of other potential overlapping unavailabilities. For example: if an unavailability was already set between June 10 and June 20, and if the user deletes an unavailability between June 18 and June 22 (to set their car as available between this dates), this webhook will only send information about the newly deleted June 18 - June 22 unavailability. It will not show that, under the hood, the unavailability from June 10 to June 20 has be deleted, and that a new unavailability from June 10 to June 18 has been created.
-}
+car_id = GetAroundOwner::null.new #  | ID of car
+
 
 begin
-  # Unavailabilities deleted on one of your cars
-  api_instance.deleted_unavailability_post(opts)
+  #Destroy Unavailability related to a car between dates
+  api_instance.destroy_unavailability(car_id)
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling UnavailabilitiesApi->deleted_unavailability_post: #{e}"
-end
-```
-
-#### Using the deleted_unavailability_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> deleted_unavailability_post_with_http_info(opts)
-
-```ruby
-begin
-  # Unavailabilities deleted on one of your cars
-  data, status_code, headers = api_instance.deleted_unavailability_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling UnavailabilitiesApi->deleted_unavailability_post_with_http_info: #{e}"
+  puts "Exception when calling UnavailabilitiesApi->destroy_unavailability: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_unavailabilities_deleted** | [**GetaroundUnavailabilitiesDeleted**](GetaroundUnavailabilitiesDeleted.md) | This event is triggered whenever an unavailability is deleted (through the API or directly in the app/website). It shows the unavailability that has just been deleted, with the same timestamps as those entered by the user. It does not show the changes of other potential overlapping unavailabilities. For example: if an unavailability was already set between June 10 and June 20, and if the user deletes an unavailability between June 18 and June 22 (to set their car as available between this dates), this webhook will only send information about the newly deleted June 18 - June 22 unavailability. It will not show that, under the hood, the unavailability from June 10 to June 20 has be deleted, and that a new unavailability from June 10 to June 18 has been created. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **car_id** | [****](.md)| ID of car | 
 
 ### Return type
 
@@ -126,10 +98,70 @@ nil (empty response body)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+
+# **get_unavailabilities_for_car**
+> UnavailabilitiesIndex get_unavailabilities_for_car(start_date, end_date, car_id, opts)
+
+Find Unavailabilities related to a car between dates
+
+Find between 2 dates when you’ve set a car as unavailable
+
+### Example
+```ruby
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
+
+api_instance = GetAroundOwner::UnavailabilitiesApi.new
+start_date = GetAroundOwner::null.new #  | Start date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html)
+end_date = GetAroundOwner::null.new #  | End date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html)
+car_id = GetAroundOwner::null.new #  | ID of the car
+opts = { 
+  page: GetAroundOwner::null.new, #  | Page number
+  per_page: GetAroundOwner::null.new #  | Page size
+}
+
+begin
+  #Find Unavailabilities related to a car between dates
+  result = api_instance.get_unavailabilities_for_car(start_date, end_date, car_id, opts)
+  p result
+rescue GetAroundOwner::ApiError => e
+  puts "Exception when calling UnavailabilitiesApi->get_unavailabilities_for_car: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_date** | [****](.md)| Start date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) | 
+ **end_date** | [****](.md)| End date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) | 
+ **car_id** | [****](.md)| ID of the car | 
+ **page** | [****](.md)| Page number | [optional] 
+ **per_page** | [****](.md)| Page size | [optional] [default to 30]
+
+### Return type
+
+[**UnavailabilitiesIndex**](UnavailabilitiesIndex.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 

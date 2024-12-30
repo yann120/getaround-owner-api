@@ -2,70 +2,48 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**get_car_by_id**](CarsApi.md#get_car_by_id) | **GET** /cars/{id}.json | Find a car by ID |
-| [**get_cars**](CarsApi.md#get_cars) | **GET** /cars.json | Find all cars |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**get_car_by_id**](CarsApi.md#get_car_by_id) | **GET** /cars/{id}.json | Find a car by ID
+[**get_cars**](CarsApi.md#get_cars) | **GET** /cars.json | Find all cars
 
-
-## get_car_by_id
-
-> <GetaroundCar> get_car_by_id(id)
+# **get_car_by_id**
+> Car get_car_by_id(id)
 
 Find a car by ID
 
 Find a car by ID
 
-### Examples
-
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
 # setup authorization
 GetAroundOwner.configure do |config|
-  # Configure Bearer authorization: bearerAuth
-  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = GetAroundOwner::CarsApi.new
-id = '1' # String | ID of car to return
+id = GetAroundOwner::null.new #  | ID of car to return
+
 
 begin
-  # Find a car by ID
+  #Find a car by ID
   result = api_instance.get_car_by_id(id)
   p result
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling CarsApi->get_car_by_id: #{e}"
-end
-```
-
-#### Using the get_car_by_id_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<GetaroundCar>, Integer, Hash)> get_car_by_id_with_http_info(id)
-
-```ruby
-begin
-  # Find a car by ID
-  data, status_code, headers = api_instance.get_car_by_id_with_http_info(id)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <GetaroundCar>
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling CarsApi->get_car_by_id_with_http_info: #{e}"
+  puts "Exception when calling CarsApi->get_car_by_id: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **id** | **String** | ID of car to return |  |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [****](.md)| ID of car to return | 
 
 ### Return type
 
-[**GetaroundCar**](GetaroundCar.md)
+[**Car**](Car.md)
 
 ### Authorization
 
@@ -73,72 +51,51 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## get_cars
 
-> <Array<GetaroundCarsIndexInner>> get_cars(opts)
-
-Find all cars
+# **get_cars**
+> CarsIndex get_cars(opts)
 
 Find all cars
 
-### Examples
+Find all cars
 
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
 # setup authorization
 GetAroundOwner.configure do |config|
-  # Configure Bearer authorization: bearerAuth
-  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = GetAroundOwner::CarsApi.new
-opts = {
-  page: 'page_example', # String | Page number
-  per_page: 'per_page_example' # String | Page size
+opts = { 
+  page: GetAroundOwner::null.new, #  | Page number
+  per_page: GetAroundOwner::null.new #  | Page size
 }
 
 begin
-  # Find all cars
+  #Find all cars
   result = api_instance.get_cars(opts)
   p result
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling CarsApi->get_cars: #{e}"
-end
-```
-
-#### Using the get_cars_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<Array<GetaroundCarsIndexInner>>, Integer, Hash)> get_cars_with_http_info(opts)
-
-```ruby
-begin
-  # Find all cars
-  data, status_code, headers = api_instance.get_cars_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <Array<GetaroundCarsIndexInner>>
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling CarsApi->get_cars_with_http_info: #{e}"
+  puts "Exception when calling CarsApi->get_cars: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **page** | **String** | Page number | [optional] |
-| **per_page** | **String** | Page size | [optional][default to &#39;30&#39;] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | [****](.md)| Page number | [optional] 
+ **per_page** | [****](.md)| Page size | [optional] [default to 30]
 
 ### Return type
 
-[**Array&lt;GetaroundCarsIndexInner&gt;**](GetaroundCarsIndexInner.md)
+[**CarsIndex**](CarsIndex.md)
 
 ### Authorization
 
@@ -146,6 +103,8 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 

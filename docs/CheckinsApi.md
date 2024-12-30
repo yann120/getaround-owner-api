@@ -2,70 +2,113 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**car_checked_in_rental_post**](CheckinsApi.md#car_checked_in_rental_post) | **POST** /carCheckedInRental | Rental started for one of your cars |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**get_checkin_by_rental_id**](CheckinsApi.md#get_checkin_by_rental_id) | **GET** /rentals/{rental_id}/checkin.json | Find a checkin by rental ID
+[**get_checkins**](CheckinsApi.md#get_checkins) | **GET** /checkins.json | List of checkins that occurred between two dates
 
+# **get_checkin_by_rental_id**
+> Checkin get_checkin_by_rental_id(rental_id)
 
-## car_checked_in_rental_post
+Find a checkin by rental ID
 
-> car_checked_in_rental_post(opts)
+Find a checkin by rental ID
 
-Rental started for one of your cars
-
-### Examples
-
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
 
 api_instance = GetAroundOwner::CheckinsApi.new
-opts = {
-  getaround_rentals_car_checked_in:  # GetaroundRentalsCarCheckedIn | This event is triggered when a rental starts and the car has been unlocked
-}
+rental_id = GetAroundOwner::null.new #  | ID of the rental related to the checkin to return
+
 
 begin
-  # Rental started for one of your cars
-  api_instance.car_checked_in_rental_post(opts)
+  #Find a checkin by rental ID
+  result = api_instance.get_checkin_by_rental_id(rental_id)
+  p result
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling CheckinsApi->car_checked_in_rental_post: #{e}"
-end
-```
-
-#### Using the car_checked_in_rental_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> car_checked_in_rental_post_with_http_info(opts)
-
-```ruby
-begin
-  # Rental started for one of your cars
-  data, status_code, headers = api_instance.car_checked_in_rental_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling CheckinsApi->car_checked_in_rental_post_with_http_info: #{e}"
+  puts "Exception when calling CheckinsApi->get_checkin_by_rental_id: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_rentals_car_checked_in** | [**GetaroundRentalsCarCheckedIn**](GetaroundRentalsCarCheckedIn.md) | This event is triggered when a rental starts and the car has been unlocked | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rental_id** | [****](.md)| ID of the rental related to the checkin to return | 
 
 ### Return type
 
-nil (empty response body)
+[**Checkin**](Checkin.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **get_checkins**
+> CheckinsIndex get_checkins(start_date, end_date, opts)
+
+List of checkins that occurred between two dates
+
+List of checkins that occurred between two dates
+
+### Example
+```ruby
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
+
+api_instance = GetAroundOwner::CheckinsApi.new
+start_date = GetAroundOwner::null.new #  | Start date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html)
+end_date = GetAroundOwner::null.new #  | End date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html)
+opts = { 
+  page: GetAroundOwner::null.new, #  | Page number
+  per_page: GetAroundOwner::null.new #  | Page size
+}
+
+begin
+  #List of checkins that occurred between two dates
+  result = api_instance.get_checkins(start_date, end_date, opts)
+  p result
+rescue GetAroundOwner::ApiError => e
+  puts "Exception when calling CheckinsApi->get_checkins: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_date** | [****](.md)| Start date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) | 
+ **end_date** | [****](.md)| End date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) | 
+ **page** | [****](.md)| Page number | [optional] 
+ **per_page** | [****](.md)| Page size | [optional] [default to 30]
+
+### Return type
+
+[**CheckinsIndex**](CheckinsIndex.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 

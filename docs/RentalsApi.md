@@ -2,262 +2,113 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-| Method | HTTP request | Description |
-| ------ | ------------ | ----------- |
-| [**booked_rental_post**](RentalsApi.md#booked_rental_post) | **POST** /bookedRental | New rental booked for one of your cars |
-| [**canceled_rental_post**](RentalsApi.md#canceled_rental_post) | **POST** /canceledRental | Canceled rental for one of your cars |
-| [**car_switched_rental_post**](RentalsApi.md#car_switched_rental_post) | **POST** /carSwitchedRental | There was a switch car on one of your rental |
-| [**times_changed_rental_post**](RentalsApi.md#times_changed_rental_post) | **POST** /timesChangedRental | Rental time change for one of your car |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**get_rental_by_id**](RentalsApi.md#get_rental_by_id) | **GET** /rentals/{id}.json | Find a rental by ID
+[**get_rentals**](RentalsApi.md#get_rentals) | **GET** /rentals.json | Find rentals booked between dates
 
+# **get_rental_by_id**
+> Rental get_rental_by_id(id)
 
-## booked_rental_post
+Find a rental by ID
 
-> booked_rental_post(opts)
+Find a rental by ID
 
-New rental booked for one of your cars
-
-### Examples
-
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
 
 api_instance = GetAroundOwner::RentalsApi.new
-opts = {
-  getaround_rentals_booked:  # GetaroundRentalsBooked | This event is triggered when a new rental booking has been created for one of your cars
-}
+id = GetAroundOwner::null.new #  | ID of rental to return
+
 
 begin
-  # New rental booked for one of your cars
-  api_instance.booked_rental_post(opts)
+  #Find a rental by ID
+  result = api_instance.get_rental_by_id(id)
+  p result
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->booked_rental_post: #{e}"
-end
-```
-
-#### Using the booked_rental_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> booked_rental_post_with_http_info(opts)
-
-```ruby
-begin
-  # New rental booked for one of your cars
-  data, status_code, headers = api_instance.booked_rental_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->booked_rental_post_with_http_info: #{e}"
+  puts "Exception when calling RentalsApi->get_rental_by_id: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_rentals_booked** | [**GetaroundRentalsBooked**](GetaroundRentalsBooked.md) | This event is triggered when a new rental booking has been created for one of your cars | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [****](.md)| ID of rental to return | 
 
 ### Return type
 
-nil (empty response body)
+[**Rental**](Rental.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## canceled_rental_post
 
-> canceled_rental_post(opts)
+# **get_rentals**
+> RentalsIndex get_rentals(start_date, end_date, opts)
 
-Canceled rental for one of your cars
+Find rentals booked between dates
 
-### Examples
+Find rentals booked between dates
 
+### Example
 ```ruby
-require 'time'
-require 'get_around_owner'
+# load the gem
+require 'getaround-api'
+# setup authorization
+GetAroundOwner.configure do |config|
+end
 
 api_instance = GetAroundOwner::RentalsApi.new
-opts = {
-  getaround_rentals_canceled:  # GetaroundRentalsCanceled | This event is triggered when a rental has been canceled for one of your cars
+start_date = GetAroundOwner::null.new #  | Start date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html)
+end_date = GetAroundOwner::null.new #  | End date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html)
+opts = { 
+  page: GetAroundOwner::null.new, #  | Page number
+  per_page: GetAroundOwner::null.new #  | Page size
 }
 
 begin
-  # Canceled rental for one of your cars
-  api_instance.canceled_rental_post(opts)
+  #Find rentals booked between dates
+  result = api_instance.get_rentals(start_date, end_date, opts)
+  p result
 rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->canceled_rental_post: #{e}"
-end
-```
-
-#### Using the canceled_rental_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> canceled_rental_post_with_http_info(opts)
-
-```ruby
-begin
-  # Canceled rental for one of your cars
-  data, status_code, headers = api_instance.canceled_rental_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->canceled_rental_post_with_http_info: #{e}"
+  puts "Exception when calling RentalsApi->get_rentals: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_rentals_canceled** | [**GetaroundRentalsCanceled**](GetaroundRentalsCanceled.md) | This event is triggered when a rental has been canceled for one of your cars | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_date** | [****](.md)| Start date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) | 
+ **end_date** | [****](.md)| End date and time in [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) | 
+ **page** | [****](.md)| Page number | [optional] 
+ **per_page** | [****](.md)| Page size | [optional] [default to 30]
 
 ### Return type
 
-nil (empty response body)
+[**RentalsIndex**](RentalsIndex.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## car_switched_rental_post
-
-> car_switched_rental_post(opts)
-
-There was a switch car on one of your rental
-
-### Examples
-
-```ruby
-require 'time'
-require 'get_around_owner'
-
-api_instance = GetAroundOwner::RentalsApi.new
-opts = {
-  getaround_rentals_car_switched:  # GetaroundRentalsCarSwitched | This event is triggered when an owner or customer service team member switches the car used to perform a given rental
-}
-
-begin
-  # There was a switch car on one of your rental
-  api_instance.car_switched_rental_post(opts)
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->car_switched_rental_post: #{e}"
-end
-```
-
-#### Using the car_switched_rental_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> car_switched_rental_post_with_http_info(opts)
-
-```ruby
-begin
-  # There was a switch car on one of your rental
-  data, status_code, headers = api_instance.car_switched_rental_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->car_switched_rental_post_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_rentals_car_switched** | [**GetaroundRentalsCarSwitched**](GetaroundRentalsCarSwitched.md) | This event is triggered when an owner or customer service team member switches the car used to perform a given rental | [optional] |
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-
-## times_changed_rental_post
-
-> times_changed_rental_post(opts)
-
-Rental time change for one of your car
-
-### Examples
-
-```ruby
-require 'time'
-require 'get_around_owner'
-
-api_instance = GetAroundOwner::RentalsApi.new
-opts = {
-  getaround_rentals_times_changed:  # GetaroundRentalsTimesChanged | This event is triggered when the start or end time of a rental has been changed for one of your cars
-}
-
-begin
-  # Rental time change for one of your car
-  api_instance.times_changed_rental_post(opts)
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->times_changed_rental_post: #{e}"
-end
-```
-
-#### Using the times_changed_rental_post_with_http_info variant
-
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
-
-> <Array(nil, Integer, Hash)> times_changed_rental_post_with_http_info(opts)
-
-```ruby
-begin
-  # Rental time change for one of your car
-  data, status_code, headers = api_instance.times_changed_rental_post_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => nil
-rescue GetAroundOwner::ApiError => e
-  puts "Error when calling RentalsApi->times_changed_rental_post_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **getaround_rentals_times_changed** | [**GetaroundRentalsTimesChanged**](GetaroundRentalsTimesChanged.md) | This event is triggered when the start or end time of a rental has been changed for one of your cars | [optional] |
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
 
