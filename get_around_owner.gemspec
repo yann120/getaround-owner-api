@@ -13,7 +13,7 @@ Generator version: 7.10.0
 =end
 
 $:.push File.expand_path("../lib", __FILE__)
-require "getaround-api/version"
+require "get_around_owner/version"
 
 Gem::Specification.new do |s|
   s.name        = "get_around_owner"

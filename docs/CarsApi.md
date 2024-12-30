@@ -2,12 +2,13 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**get_car_by_id**](CarsApi.md#get_car_by_id) | **GET** /cars/{id}.json | Find a car by ID
-[**get_cars**](CarsApi.md#get_cars) | **GET** /cars.json | Find all cars
+| Method                                        | HTTP request            | Description      |
+| --------------------------------------------- | ----------------------- | ---------------- |
+| [**get_car_by_id**](CarsApi.md#get_car_by_id) | **GET** /cars/{id}.json | Find a car by ID |
+| [**get_cars**](CarsApi.md#get_cars)           | **GET** /cars.json      | Find all cars    |
 
 # **get_car_by_id**
+
 > Car get_car_by_id(id)
 
 Find a car by ID
@@ -15,9 +16,10 @@ Find a car by ID
 Find a car by ID
 
 ### Example
+
 ```ruby
 # load the gem
-require 'getaround-api'
+require 'get_around_owner'
 # setup authorization
 GetAroundOwner.configure do |config|
 end
@@ -37,9 +39,9 @@ end
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | [****](.md)| ID of car to return | 
+| Name   | Type            | Description         | Notes |
+| ------ | --------------- | ------------------- | ----- |
+| **id** | [\*\*\*\*](.md) | ID of car to return |
 
 ### Return type
 
@@ -51,12 +53,11 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 # **get_cars**
+
 > CarsIndex get_cars(opts)
 
 Find all cars
@@ -64,15 +65,16 @@ Find all cars
 Find all cars
 
 ### Example
+
 ```ruby
 # load the gem
-require 'getaround-api'
+require 'get_around_owner'
 # setup authorization
 GetAroundOwner.configure do |config|
 end
 
 api_instance = GetAroundOwner::CarsApi.new
-opts = { 
+opts = {
   page: GetAroundOwner::null.new, #  | Page number
   per_page: GetAroundOwner::null.new #  | Page size
 }
@@ -88,10 +90,10 @@ end
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | [****](.md)| Page number | [optional] 
- **per_page** | [****](.md)| Page size | [optional] [default to 30]
+| Name         | Type            | Description | Notes                      |
+| ------------ | --------------- | ----------- | -------------------------- |
+| **page**     | [\*\*\*\*](.md) | Page number | [optional]                 |
+| **per_page** | [\*\*\*\*](.md) | Page size   | [optional] [default to 30] |
 
 ### Return type
 
@@ -103,8 +105,5 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json

@@ -2,11 +2,12 @@
 
 All URIs are relative to *https://api-eu.getaround.com/owner/v1*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**get_user_by_id**](UsersApi.md#get_user_by_id) | **GET** /users/{id}.json | Find a user by ID (Users are customers who rent one of your cars)
+| Method                                           | HTTP request             | Description                                                       |
+| ------------------------------------------------ | ------------------------ | ----------------------------------------------------------------- |
+| [**get_user_by_id**](UsersApi.md#get_user_by_id) | **GET** /users/{id}.json | Find a user by ID (Users are customers who rent one of your cars) |
 
 # **get_user_by_id**
+
 > User get_user_by_id(id)
 
 Find a user by ID (Users are customers who rent one of your cars)
@@ -14,9 +15,10 @@ Find a user by ID (Users are customers who rent one of your cars)
 Find a user by ID (Users are customers who rent one of your cars)
 
 ### Example
+
 ```ruby
 # load the gem
-require 'getaround-api'
+require 'get_around_owner'
 # setup authorization
 GetAroundOwner.configure do |config|
 end
@@ -36,9 +38,9 @@ end
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | [****](.md)| ID of user to return | 
+| Name   | Type            | Description          | Notes |
+| ------ | --------------- | -------------------- | ----- |
+| **id** | [\*\*\*\*](.md) | ID of user to return |
 
 ### Return type
 
@@ -50,8 +52,5 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
