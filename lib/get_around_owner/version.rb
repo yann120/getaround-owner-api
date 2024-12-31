@@ -10,5 +10,5 @@ Swagger Codegen version: 3.0.66
 =end
 
 module GetAroundOwner
-  VERSION = '1.0.5'
+  VERSION = '1.0.6'
 end
